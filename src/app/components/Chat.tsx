@@ -39,10 +39,11 @@ export default function Chat() {
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Nepoznata greška';
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: `Greška: ${err.message}` },
+        { role: 'assistant', content: `Greška: ${errorMessage}` },
       ]);
     } finally {
       setLoading(false);
