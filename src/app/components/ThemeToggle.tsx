@@ -7,7 +7,7 @@ function getInitialTheme(): "light" | "dark" {
   return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
 }
 
-export default function ThemeToggle(): JSX.Element {
+export default function ThemeToggle() {
   const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme())
 
   useEffect(() => {

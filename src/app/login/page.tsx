@@ -32,7 +32,7 @@ export default function LoginPage() {
       addToast({ type: 'success', message: 'Uspešna prijava.' })
       const redirect = search.get('redirect') || '/'
       router.replace(redirect)
-    } catch (e) {
+    } catch {
       addToast({ type: 'error', message: 'Greška pri prijavi.' })
     } finally {
       setLoading(false)
