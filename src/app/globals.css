@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #e5e5e5;
   --foreground: #171717;
 }
 
@@ -19,8 +19,19 @@
   }
 }
 
-body {
+/* Let Tailwind classes control background/text via class-based dark mode */
+/* body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+} */
+
+/* Fallback: respond to data-theme attribute for guaranteed visual toggle */
+html[data-theme="light"] body {
+  background-color: #e5e5e5;
+  color: #0f172a;
+}
+html[data-theme="dark"] body {
+  background-color: #0b0b0b;
+  color: #e5e7eb;
 }
