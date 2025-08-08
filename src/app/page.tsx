@@ -119,10 +119,10 @@ export default function Home() {
   }, [clearChat])
 
   return (
-    <main className="max-w-3xl mx-auto px-4 py-8">
-      <section className="backdrop-blur-lg bg-white/80 dark:bg-white/10 border border-emerald-900/10 dark:border-white/20 rounded-2xl shadow-xl p-6 md:p-8 space-y-6">
+    <main className="max-w-3xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
+      <section className="backdrop-blur-lg bg-white/80 dark:bg-white/10 border border-emerald-900/10 dark:border-white/20 rounded-2xl shadow-xl p-5 sm:p-6 md:p-8 space-y-5 sm:space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl md:text-2xl font-semibold tracking-tight">Chat</h2>
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold tracking-tight">Chat</h2>
           <div className="flex items-center gap-2">
             <span className="text-xs md:text-sm text-emerald-600 dark:text-emerald-300">PlayMind Assistant</span>
             <button
@@ -169,12 +169,12 @@ export default function Home() {
           <div ref={endRef} />
         </div>
 
-        <div className="flex gap-3 items-end">
-          <div className="relative flex-1">
+        <div className="flex gap-2 sm:gap-3 items-end">
+          <div className="relative flex-1 min-w-0">
             <textarea
               ref={textareaRef}
               rows={1}
-              className="w-full rounded-xl px-4 py-3 text-emerald-900 bg-white placeholder-emerald-400/70 border border-emerald-900/10 dark:border-white/30 focus:outline-none focus:ring-2 focus:ring-emerald-300/60 shadow-sm resize-none"
+              className="w-full rounded-xl px-3 sm:px-4 py-3 text-emerald-900 bg-white placeholder-emerald-400/70 border border-emerald-900/10 dark:border-white/30 focus:outline-none focus:ring-2 focus:ring-emerald-300/60 shadow-sm resize-none"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Napiši poruku..."
@@ -189,7 +189,7 @@ export default function Home() {
           <button
             onClick={sendMessage}
             disabled={loading}
-            className="bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 disabled:opacity-60 text-white px-5 py-3 rounded-xl font-medium shadow-sm transition"
+            className="bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 disabled:opacity-60 text-white px-4 sm:px-5 py-3 rounded-xl font-medium shadow-sm transition"
           >
             Pošalji
           </button>

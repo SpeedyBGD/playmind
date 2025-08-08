@@ -108,8 +108,8 @@ export default function AdminPage() {
   }
 
   return (
-    <main className="max-w-2xl mx-auto px-4 py-8">
-      <section className="backdrop-blur-lg bg-white/80 dark:bg-white/10 border border-emerald-900/10 dark:border-white/20 rounded-2xl shadow-xl p-6 space-y-6">
+    <main className="max-w-3xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
+      <section className="backdrop-blur-lg bg-white/80 dark:bg-white/10 border border-emerald-900/10 dark:border-white/20 rounded-2xl shadow-xl p-5 sm:p-6 space-y-5 sm:space-y-6">
         {!adminLoggedIn ? (
           <form onSubmit={adminLogin} className="space-y-4">
             <h1 className="text-xl font-semibold">Admin prijava</h1>
@@ -147,11 +147,11 @@ export default function AdminPage() {
                 <button onClick={adminLogout} className="text-xs px-2 py-1 rounded-md border border-white/30 bg-white/10 hover:bg-white/20">Logout</button>
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-col sm:flex-row">
               <input
                 type="email"
                 placeholder="email@example.com"
-                className="flex-1 rounded-xl px-4 py-2 text-emerald-900 bg-white border border-emerald-900/10 dark:border-white/30"
+                className="flex-1 rounded-xl px-3 sm:px-4 py-2 text-emerald-900 bg-white border border-emerald-900/10 dark:border-white/30"
                 value={newEmail}
                 onChange={(e) => setNewEmail(e.target.value)}
               />
@@ -161,7 +161,7 @@ export default function AdminPage() {
             {loading ? (
               <p className="text-sm text-emerald-800/70 dark:text-white/70">Učitavanje...</p>
             ) : (
-              <ul className="divide-y divide-emerald-900/10 dark:divide-white/20">
+              <ul className="divide-y divide-emerald-900/10 dark:divide-white/20 text-sm sm:text-base">
                 {emails.map((email) => (
                   <li key={email} className="py-3 flex items-center justify-between">
                     <span>{email}</span>
