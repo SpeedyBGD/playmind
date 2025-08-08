@@ -27,7 +27,7 @@ export default function Home() {
       }
     }
     load()
-  }, [addToast])
+  }, [addToast, clearChat])
 
   // Auto-scroll to last message
   useEffect(() => {

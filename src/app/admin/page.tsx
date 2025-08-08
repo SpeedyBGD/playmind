@@ -34,7 +34,7 @@ export default function AdminPage() {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Greška')
       setEmails(data.emails || [])
-    } catch (e) {
+    } catch {
       addToast({ type: 'error', message: 'Greška pri učitavanju korisnika.' })
     } finally {
       setLoading(false)
@@ -59,8 +59,8 @@ export default function AdminPage() {
       addToast({ type: 'success', message: 'Admin prijava uspešna.' })
       setAdminPassword('')
       load()
-    } catch (e) {
-      addToast({ type: 'error', message: e instanceof Error ? e.message : 'Greška pri prijavi' })
+    } catch (err) {
+      addToast({ type: 'error', message: err instanceof Error ? err.message : 'Greška pri prijavi' })
     }
   }
 

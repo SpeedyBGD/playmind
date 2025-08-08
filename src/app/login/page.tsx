@@ -11,8 +11,8 @@ export default function LoginPage() {
   const search = useSearchParams()
   const { addToast } = useToast()
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const onSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
     if (!email.includes('@')) {
       addToast({ type: 'error', message: 'Unesite validan email.' })
       return
