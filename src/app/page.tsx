@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useToast } from './components/ToastProvider'
 
 type Message = { role: 'user' | 'assistant'; content: string }
@@ -27,7 +27,7 @@ export default function Home() {
       }
     }
     load()
-  }, [addToast, clearChat])
+  }, [addToast])
 
   // Auto-scroll to last message
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Home() {
     if (!res.ok) throw new Error(data.error || 'Greška pri čuvanju poruke')
   }
 
-  const clearChat = async () => {
+  const clearChat = useCallback(async () => {
     try {
       const res = await fetch('/api/messages', { method: 'DELETE' })
       const data = await res.json().catch(() => ({}))
@@ -63,7 +63,7 @@ export default function Home() {
       const msg = e instanceof Error ? e.message : 'Greška pri brisanju razgovora.'
       addToast({ type: 'error', message: msg })
     }
-  }
+  }, [addToast])
 
   const sendMessage = async () => {
     if (!input.trim()) return
@@ -116,7 +116,7 @@ export default function Home() {
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [])
+  }, [clearChat])
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-8">
