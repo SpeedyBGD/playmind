@@ -9,14 +9,14 @@ function getInitialTheme(): "light" | "dark" {
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme())
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const root = document.documentElement
-    const body = document.body
-    if (theme === "dark") { root.classList.add("dark"); body.classList.add("dark") }
-    else { root.classList.remove("dark"); body.classList.remove("dark") }
+    if (theme === "dark") { root.classList.add("dark") }
+    else { root.classList.remove("dark") }
     root.setAttribute('data-theme', theme)
-    body.setAttribute('data-theme', theme)
     try { window.localStorage.setItem("theme", theme) } catch {}
     try { document.cookie = `theme=${theme}; path=/; max-age=${60*60*24*180}` } catch {}
   }, [theme])
@@ -28,6 +28,18 @@ export default function ThemeToggle() {
   const lightClasses = "inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold border border-emerald-600 bg-emerald-500 text-white shadow hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-400"
   const darkClasses = "inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold border border-white/30 bg-white/10 text-white hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
   const btnClass = theme === 'dark' ? darkClasses : lightClasses
+
+  if (!mounted) {
+    // Render a neutral, theme-agnostic button to avoid hydration mismatch
+    return (
+      <button aria-label="Toggle theme" onClick={toggle} className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold border border-slate-300 bg-slate-200 text-slate-900 shadow hover:bg-slate-300 dark:border-white/30 dark:bg-white/10 dark:text-white dark:hover:bg-white/20">
+        <span className="inline-flex items-center gap-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4"><circle cx="12" cy="12" r="5"/></svg>
+          Theme
+        </span>
+      </button>
+    )
+  }
 
   return (
     <button aria-label="Toggle theme" onClick={toggle} className={btnClass}>
