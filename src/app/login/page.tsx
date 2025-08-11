@@ -1,10 +1,10 @@
 "use client"
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useToast } from '../components/ToastProvider'
 
-export default function LoginPage() {
+function LoginContent() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
@@ -65,5 +65,13 @@ export default function LoginPage() {
         
       </section>
     </main>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<main className="min-h-[80vh] flex items-center justify-center px-4"><p className="text-sm text-slate-500">Loading…</p></main>}>
+      <LoginContent />
+    </Suspense>
   )
 }
