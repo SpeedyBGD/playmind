@@ -1,14 +1,13 @@
 "use client"
 
 import { Suspense, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useToast } from '../components/ToastProvider'
 
 function LoginContent() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const search = useSearchParams()
   const { addToast } = useToast()
 
   const onSubmit = async (event: React.FormEvent) => {
