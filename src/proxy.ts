@@ -13,7 +13,7 @@ const PUBLIC_PATHS = [
   '/api/session',
 ]
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   const isPublic = PUBLIC_PATHS.some((p) => pathname.startsWith(p))
   if (isPublic) return NextResponse.next()
